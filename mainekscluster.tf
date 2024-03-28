@@ -8,7 +8,7 @@ module "eks" {
   enable_irsa = true
 
   tags = {
-    cluster = "demo"
+    cluster = "demo-1"
   }
 
   vpc_id = module.vpc.vpc_id
@@ -23,7 +23,7 @@ module "eks" {
 
     node_group = {
       min_size     = 2
-      max_size     = 6
+      max_size     = 4
       desired_size = 2
     }
   }
