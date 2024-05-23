@@ -4,14 +4,13 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = var.kubernetes_version
   subnet_ids      = module.vpc.private_subnets
+  vpc_id          = module.vpc.vpc_id
 
   enable_irsa = true
 
   tags = {
-    cluster = "demo-1"
+    cluster = local.cluster_name
   }
-
-  vpc_id = module.vpc.vpc_id
 
   eks_managed_node_group_defaults = {
     ami_type               = "AL2_x86_64"
@@ -20,7 +19,6 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-
     node_group = {
       min_size     = 2
       max_size     = 4
